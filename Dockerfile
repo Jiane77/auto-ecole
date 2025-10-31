@@ -1,8 +1,7 @@
-# Utilise l'image officielle PHP avec Apache
 FROM php:8.2-apache
-
-# Copier ton projet dans le dossier web d'Apache
+RUN a2enmod rewrite
 COPY . /var/www/html/
-
-# Installer les extensions PHP pour MySQL si ton projet en a besoin
+RUN chown -R www-data:www-data /var/www/html/
 RUN docker-php-ext-install mysqli pdo pdo_mysql
+EXPOSE 80
+CMD ["apache2-foreground"]

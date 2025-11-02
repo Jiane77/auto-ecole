@@ -1,0 +1,9 @@
+.env
+*.sql
+.autoecole.sql
+docker-compose.override.yml
+*.log
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

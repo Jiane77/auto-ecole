@@ -32,7 +32,7 @@
                             <img src='images/edit.jpg' width='30' height='30' alt='Modifier'>
                           </a>";
                     echo "<a href='index.php?page=4&action=delete&idexamen=" . $unExamens['idexamen'] . "' 
-                            onclick=\"return confirm('Voulez-vous vraiment supprimer ce véhicule ?');\">
+                            onclick=\"return confirm('Voulez-vous vraiment supprimer cet examen ?');\">
                             <img src='images/delete.png' width='30' height='30' alt='Supprimer'>
                           </a>";
                     echo "</td>";

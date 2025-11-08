@@ -79,8 +79,17 @@ require_once("modeles/modele.class.php");
     public function selectAll_candidat(){
        return $this->unModele->selectAll_candidat();
     }
+    public function selectLike_candidat($mot){
+        return $this->unModele->selectLike_candidat($mot);
+    }
     public function select_candidat($idcandidat){
       return  $this->unModele->select_candidat($idcandidat);
+    }
+    public function selectWhere_candidat($idcandidat){
+        return $this->unModele->selectWhere_candidat($idcandidat);
+    }
+    public function update_candidat($candidat){
+    $this->unModele->update_candidat($candidat);
     }
     public function delete_candidat($idcandidat){
         $this->unModele->delete_candidat($idcandidat);
@@ -88,6 +97,13 @@ require_once("modeles/modele.class.php");
     public function insert_cours($cours){
         $this->unModele->insert_cours($cours);
     }
+    public function selectWhere_cours($idcours){
+        return $this->unModele->selectWhere_cours($idcours);
+    }
+    public function selectLike_cours($mot){
+        return $this->unModele->selectLike_cours($mot);
+    }
+
     public function selectAll_cours(){
     return $this->unModele->selectAll_cours();
     }
@@ -102,6 +118,15 @@ require_once("modeles/modele.class.php");
     }
     public function selectAll_examen(){
        return $this->unModele->selectAll_examen();
+    }
+    public function selectLike_examen($mot){
+        return $this->unModele->selectLike_examen($mot);
+    }
+    public function selectWhere_examen($idexamen){
+        return $this->unModele->selectWhere_examen($idexamen);
+    }
+    public function update_examen($examen){
+    $this->unModele->update_examen($examen);
     }
     public function delete_examen($idexamen){
         $this->unModele->delete_examen($idexamen);

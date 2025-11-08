@@ -264,21 +264,22 @@ public function delete_formule($idformule){
             ":adresse" => $candidat['adresse'],
             ":telephone" => $candidat['telephone'],
             ":email" => $candidat['emailcandidat'],
-            ":date_inscription" => $candidat['date_inscription'],
-            ":id_formule" => $candidat['id_formule']
+            ":date_inscription" => $candidat['date_inscription']=date('y-m-d'),
+            ":id_formule" => $candidat['id_formule']??null
         ];
         $exec = $this->unPdo->prepare($requete);
         $exec->execute($donnees);
     }
 
-    public function selectAll_candidat() {
-        $requete = "SELECT c.*, f.nomformule 
-                    FROM candidat c
-                    LEFT JOIN formule f ON c.id_formule = f.idformule";
-        $exec = $this->unPdo->prepare($requete);
-        $exec->execute();
-        return $exec->fetchAll(PDO::FETCH_ASSOC);
+     public function selectAll_candidat() {
+       $requete = "SELECT c.*, f.nomformule 
+                   FROM candidat c
+                   LEFT JOIN formule f ON c.id_formule = f.id_formule";
+       $exec = $this->unPdo->prepare($requete);
+       $exec->execute();
+       return $exec->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     public function select_candidat($idcandidat) {
         $requete = "SELECT * FROM candidat WHERE idcandidat = :idcandidat";
@@ -286,6 +287,19 @@ public function delete_formule($idformule){
         $exec = $this->unPdo->prepare($requete);
         $exec->execute($donnees);
         return $exec->fetch(PDO::FETCH_ASSOC);
+    }
+    public function selectWhere_candidat($idcandidat){
+    $requete ="select *from candidat where idcandidat=:idcandidat";
+    $exec=$this->unPdo->prepare($requete);
+    $exec->execute([":idcandidat"=>$idcandidat]);
+    return $exec->fetch(PDO::FETCH_ASSOC);
+}
+    public function selectLike_candidat($mot){
+        $requete = "SELECT * FROM candidat
+                WHERE nomcandidat LIKE :mot OR prenomcandidat LIKE :mot";
+        $exec = $this->unPdo->prepare($requete);
+        $exec->execute([':mot' => "%$mot%"]);
+        return $exec->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function update_candidat($candidat) {
@@ -339,6 +353,19 @@ public function delete_formule($idformule){
         $exec->execute();
         return $exec->fetchAll(PDO::FETCH_ASSOC);
     }
+     public function selectLike_cours($mot){
+        $requete = "SELECT * FROM cours 
+                WHERE date_cours LIKE :mot OR heure LIKE :mot";
+        $exec = $this->unPdo->prepare($requete);
+        $exec->execute([':mot' => "%$mot%"]);
+        return $exec->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function selectWhere_cours($idcours){
+    $requete ="select *from cours where idcours=:idcours";
+    $exec=$this->unPdo->prepare($requete);
+    $exec->execute([":idcours"=>$idcours]);
+    return $exec->fetch(PDO::FETCH_ASSOC);
+}
     public function update_cours($cours) {
     $requete = "UPDATE cours SET 
                 date_cours = :date_cours,
@@ -374,7 +401,7 @@ public function delete_formule($idformule){
             ":resultat" => $examen['resultat'],
             ":idcandidat" => $examen['idcandidat']
         ];
-        $exec = $this->unPdo->prepare($requete);
+        $exec =$this->unPdo->prepare($requete);
         $exec->execute($donnees);
     }
     public function selectAll_examen() {
@@ -384,6 +411,34 @@ public function delete_formule($idformule){
         $exec = $this->unPdo->prepare($requete);
         $exec->execute();
         return $exec->fetchAll(PDO::FETCH_ASSOC);
+    }
+     public function selectLike_examen($mot){
+        $requete = "SELECT * FROM examen 
+                WHERE date_examen LIKE :mot OR resultat LIKE :mot";
+        $exec = $this->unPdo->prepare($requete);
+        $exec->execute([':mot' => "%$mot%"]);
+        return $exec->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function selectWhere_examen($idexamen){
+    $requete ="select *from examen where idexamen=:idexamen";
+    $exec=$this->unPdo->prepare($requete);
+    $exec->execute([":idexamen"=>$idexamen]);
+    return $exec->fetch(PDO::FETCH_ASSOC);
+    }
+        public function update_examen($examen){
+        $requete="update examen set 
+        date_examen=:date_examen,
+        resultat=:resultat
+        where idexamen= :idexamen
+        ";
+         $donnees=[
+            ":date_examen"=>$examen['date_examen'],
+            ":resultat"=>$examen['resultat'],
+            ":idexamen"=>$examen['idexamen'],
+            ":idcandidat" => $examen['idcandidat']
+        ];
+        $exec=$this->unPdo->prepare($requete);
+        $exec->execute($donnees);
     }
     public function delete_examen($idexamen) {
         $requete = "DELETE FROM examen WHERE idexamen = :idexamen";

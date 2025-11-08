@@ -32,7 +32,7 @@
                     echo "<td class='px-4 py-2'>" .$unCandidat['idcandidat'] . "</td>";
                     echo "<td class='px-4 py-2'>" .$unCandidat['nomcandidat'] . "</td>";
                     echo "<td class='px-4 py-2'>" .$unCandidat['prenomcandidat'] . "</td>";
-                    echo "<td class='px-4 py-2'>" .$unCandidat['date_naissance'] . "</td>";
+                    echo "<td class='px-4 py-2'>" .date ('d/m/y',strtotime($unCandidat['date_naissance'])) . "</td>";
                     echo "<td class='px-4 py-2'>" .$unCandidat['adresse'] . "</td>";
                     echo "<td class='px-4 py-2'>" .$unCandidat['telephone'] . "</td>";
                     echo "<td class='px-4 py-2'>" .$unCandidat['emailcandidat'] . "</td>";

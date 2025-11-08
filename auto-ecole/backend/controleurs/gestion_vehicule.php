@@ -21,7 +21,7 @@ require_once("vue/vue_insert_vehicule.php");
 if(isset($_POST["Valider"])){
     $unControleur->insert_vehicule($_POST);
     echo"<br>insertion reussie du vehicule";
-
+    
 }
 //modification de la classe 
 if(isset($_POST["Modifier"])) {

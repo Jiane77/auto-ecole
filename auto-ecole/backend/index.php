@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 require_once("controleurs/controleur.class.php");
 $unControleur = new Controleur();
@@ -77,8 +78,8 @@ if (isset($_SESSION['email'])) {
         case 3: require_once("controleurs/gestion_candidat.php"); break;
         case 4: require_once("controleurs/gestion_vehicule.php"); break;
         case 5: require_once("controleurs/gestion_cours.php"); break;
-        case 6: require_once("controleurs/gestion__examen.php"); break;
-        default: require_once("controleurs/gestion__erreur.php"); break;
+        case 6: require_once("controleurs/gestion_examen.php"); break;
+        default: require_once("controleurs/gestion_erreur.php"); break;
     }
 }
 ?>
@@ -92,3 +93,5 @@ if(isset($_SESSION['email'])) {
 ?>
 </body>
 </html>
+<?php ob_end_flush(); ?>
+
